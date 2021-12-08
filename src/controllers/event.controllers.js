@@ -11,7 +11,7 @@ const create = async (req, res) => {
   try {
     console.log({ body: req.body });
     const { name, date, cars, activo } = req.body;
-    if (!name || !date || !cars) {
+    if (!name || !date) {
       return res.status(409).json({ error: "Todos los campos son requeridos" });
     }
 

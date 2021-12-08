@@ -19,6 +19,7 @@ server.use("/user", routes.user);
 server.use("/event", routes.event);
 server.use("/almacen", routes.almacen);
 server.use("/carrito", routes.carrito);
+server.use("/venta", routes.venta);
 
 // Static folder.
 

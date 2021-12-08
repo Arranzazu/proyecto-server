@@ -21,6 +21,16 @@ const create = async (req, res) => {
 	}
 };
 
+const get = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const venta = await models.venta.findById(id)
+		return res.json({ cventa });
+	} catch (_) {
+		return res.status(409).json({ error: 'Venta no encontrada' });
+	}
+};
 
 const all = async (req, res) => {
     try {
@@ -34,8 +44,7 @@ const all = async (req, res) => {
     }
 };
 
-const get = (req, res) => {
-    res.json("get") };
+
 
 const suprime = (req, res) => {
     res.json("delete") };

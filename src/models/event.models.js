@@ -13,10 +13,9 @@ const eventSchema = new Schema(
       required: true,
     },
     cars: {
-      type: String,
-      required: true,
-      
-      },
+      type: Number,
+      required: false,
+      }  ,
     activo: {
       type: Boolean,
       default: true,

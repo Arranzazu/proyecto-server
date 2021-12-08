@@ -6,8 +6,8 @@ const config = require("../config");
 const create = async (req, res) => {
   try {
     console.log({ body: req.body });
-    const { nombrecar, eventId, numero, userId } = req.body;
-    if (!nombrecar || !numero) {
+    const {  eventId, numero, userId } = req.body;
+    if (!eventId || !numero) {
       return res.status(409).json({ error: "Todos los campos son requeridos" });
     }
 
@@ -16,15 +16,15 @@ const create = async (req, res) => {
       return res.status(409).json({ error: "Evento no existe" });
     }
 	const usuario = await models.user.findById(userId);
-    if (!usuario) {
-      return res.status(409).json({ error: "El usuario no existe" });
-    }
-	const eventname = await models.carrito.findOne({ nombrecar });
-	if (eventname) {
-	  return res.status(400).json({ error: "El nombre ya existe" });
-	}
+    // if (!usuario) {
+    //   return res.status(409).json({ error: "El usuario no existe" });
+    // }
+	// const eventname = await models.carrito.findOne({ nombrecar });
+	// if (eventname) {
+	//   return res.status(400).json({ error: "El nombre ya existe" });
+	// }
 
-    const carrito = models.carrito({ nombrecar, evento
+    const carrito = models.carrito({ evento
 		, numero, usuario
 	 });
     await carrito.save();
@@ -40,7 +40,7 @@ const create = async (req, res) => {
 
 const all = async (req, res) => {
   try {
-    const carritos = await models.carrito.find();
+    const carritos = await models.carrito.find().populate('evento').sort({ numero: 'asc' });;
 
     return res.json({ carritos });
   } catch (err) {
@@ -51,7 +51,7 @@ const get = async (req, res) => {
 	try {
 		const { id } = req.params;
 
-		const carrito = await models.carrito.findById(id).populate('evento')
+		const carrito = await models.carrito.findById(id).populate('evento').populate('usuario')
 		return res.json({ carrito});
 	} catch (_) {
 		return res.status(409).json({ error: 'Carrito no encontrado' });
@@ -62,9 +62,38 @@ const suprime = (req, res) => {
   res.json("delete");
 };
 
+const update = async (req, res) => {
+	try {
+		const { id } = req.params;
+		// const { evento, numero } = req.params;
+		const { userId } = req.body;
+
+
+
+		const carrito = await models.carrito.findById(id);
+		carrito.usuario = userId;
+		// carrito.evento = evento;
+		// carrito.numero = numero;
+	
+
+		// const author = models.author.findById(authorId)
+
+		// await models.book.findByIdAndUpdate(id, {
+		// 	$set: { title, author: authorId },
+		// });
+
+		await carrito.save();
+
+		return res.status(201).json({ carrito });
+	} catch (err) {
+		console.log({ err });
+		return res.status(409).json({ error: err.message });
+	}
+};
 module.exports = {
   create,
   all,
   get,
   suprime,
+  update,
 };

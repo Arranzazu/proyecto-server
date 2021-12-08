@@ -2,12 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const carritoSchema = new Schema(
   {
-    nombrecar: {
-        type: String,
-        default:"",
-        required: true,
-        unique:true,
-      },
+
       evento: {
       type: Schema.Types.ObjectId,
       ref: 'Event',
@@ -16,10 +11,10 @@ const carritoSchema = new Schema(
         type: Number,
         required: true,
     },
-   
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+        default: '',
       },
 
 

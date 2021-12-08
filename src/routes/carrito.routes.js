@@ -9,5 +9,6 @@ router.post("/create", controllers.carrito.create);
 router.get("/all", controllers.carrito.all);
 router.get("/get/:id", controllers.carrito.get);
 router.delete("/suprime/:id", controllers.carrito.suprime);
+router.put('/:id', controllers.carrito.update);
 
 module.exports = router;
