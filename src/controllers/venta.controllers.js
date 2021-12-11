@@ -19,13 +19,26 @@ const create = async (req, res) => {
     if (!producto) {
       return res.status(409).json({ error: "El producto no existe" });
     }
+    // prueba unidades almacen
+    // var unids = await models.almacen.findById(productoId);
+    // if (!unids) {
+    //   return res.status(409).json({ error: "El producto no existe" });
+    // }
+    //Fin prueba
+
 
     const venta = models.venta({
       carrito,
       producto,
       unidades,
-    });
+    });  
+  
+    // const almacen = models.almacen({
+    // unids,
+    // });
+    producto.unids =+ unidades;
     await venta.save();
+    // await almacen.save(); 
 
     return res.status(201).json({ venta });
   } catch (_) {

@@ -20,6 +20,8 @@ server.use("/event", routes.event);
 server.use("/almacen", routes.almacen);
 server.use("/carrito", routes.carrito);
 server.use("/venta", routes.venta);
+server.use("/consumo", routes.consumo);
+server.use("/category", routes.category);
 
 // Static folder.
 

@@ -26,7 +26,7 @@ const get = async (req, res) => {
 		const { id } = req.params;
 
 		const venta = await models.venta.findById(id)
-		return res.json({ cventa });
+		return res.json({ venta });
 	} catch (_) {
 		return res.status(409).json({ error: 'Venta no encontrada' });
 	}
@@ -34,7 +34,7 @@ const get = async (req, res) => {
 
 const all = async (req, res) => {
     try {
-        const products = await models.almacen.find();
+        const products = await models.almacen.find().sort({ category: 'asc' });
 
         return res.json({ products })
 
