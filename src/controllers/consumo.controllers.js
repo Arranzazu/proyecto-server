@@ -5,6 +5,7 @@ const create = async (req, res) => {
   try {
     console.log({ body: req.body });
     const { carritoId, unidades, productoId } = req.body;
+    console.log({ carritoId, unidades, productoId } )
     // if (!productoId || !unidades) {
     //   return res.status(409).json({ error: "Todos los campos son requeridos" });
     // }

@@ -7,6 +7,7 @@ const router = Router();
 
 router.post("/create", controllers.almacen.create);
 router.get("/all", controllers.almacen.all);
+router.get("/all2", controllers.almacen.all2);
 router.get("/get/:id", controllers.almacen.all);
 router.delete("/suprime/:id", controllers.almacen.suprime);
 

@@ -45,6 +45,30 @@ const all = async (req, res) => {
 };
 
 
+const all2 = async (req, res) => {
+    // try {
+    //     const products = await models.almacen.find().sort({ category: 'asc' });
+	// 	const products2 = JSON.parse(JSON.stringify(products))
+	// 	const eventos = await models.event.find()
+	// 	for (const product of products2) {
+	// 		product.events = [{}]
+	// 		for (const venta of ventas)	{
+	// 			if (venta.producto===product) {
+
+	// 			}
+	// 		}
+	// 	}
+		
+
+    //     return res.json({ products2 })
+
+
+    // } catch (err) {
+    //     return res.json({ error: 'no se pudo crear el listado' });
+    // }
+};
+
+
 
 const suprime = (req, res) => {
     res.json("delete") };
@@ -55,5 +79,6 @@ create,
 all,
 get,
 suprime,
+all2,
 };
           

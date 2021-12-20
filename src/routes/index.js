@@ -5,6 +5,8 @@ const almacen = require("./almacen.routes");
 const venta = require("./venta.routes");
 const consumo = require("./consumo.routes");
 const category= require("./category.routes");
+const prueba= require("./prueba.routes");
+
 
 
 module.exports = {
@@ -15,4 +17,5 @@ module.exports = {
   venta,
   consumo,
   category,
+  prueba,
 };
