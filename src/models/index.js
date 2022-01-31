@@ -2,7 +2,7 @@ const user = require("./user.models");
 const event = require("./event.models");
 const carrito = require("./carrito.models");
 const almacen = require("./almacen.models");
-const venta = require("./venta.models");
+const asignado = require("./asignado.models");
 const consumo = require("./consumo.models");
 const category = require("./category.models");
 
@@ -11,7 +11,7 @@ module.exports = {
   event,
   carrito,
   almacen,
-  venta,
+  asignado,
   consumo,
   category,
 };

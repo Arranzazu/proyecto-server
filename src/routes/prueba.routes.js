@@ -16,7 +16,7 @@ for (const event of events){
     const cars = await models.carrito.find({evento: event}) 
     const products = [] 
     for ( const car of cars){
-        const product = await models.venta.find({carrito: car}) 
+        const product = await models.asignado.find({carrito: car}) 
         products.push(product)
     }
     obj.event = { 
@@ -42,7 +42,7 @@ const products = []
  const cars = await models.carrito.find({evento: event}) 
     
     for ( const car of cars){
-        const product = await models.venta.find({carrito: car, producto: productId}).populate('producto').populate('carrito')
+        const product = await models.asignado.find({carrito: car, producto: productId}).populate('producto').populate('carrito')
         products.push({product})   
    
     }
@@ -55,17 +55,17 @@ const products = []
 router.post("/suma", async (req, res) => {
     const{productId, eventId} = req.body
     const event = await models.event.findById(eventId) 
-    const product = await models.venta.findById(productId) 
+    const product = await models.asignado.findById(productId) 
     // validar que exista
     const products = []
      const cars = await models.carrito.find({evento: event})     
-     const unidades= await models.venta.find({unidades: product}) 
+     const unidades= await models.asignado.find({unidades: product}) 
         
         for ( const car of cars){
-            const product= await models.venta.find({carrito: car, producto: productId, unidades: unidades}) 
+            const product= await models.asignado.find({carrito: car, producto: productId, unidades: unidades}) 
             products.push({product})
             
-            // let total=0,numeros = await models.venta.find({carrito: car, producto: productId, unidades: unidades}) 
+            // let total=0,numeros = await models.asignado.find({carrito: car, producto: productId, unidades: unidades}) 
             let total=0,numeros = [unidades] 
             for(let i of numeros) total+=i;
             console.log(total);

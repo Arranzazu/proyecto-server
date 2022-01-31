@@ -52,7 +52,7 @@ const get = async (req, res) => {
 		const { id } = req.params;
 
 		const carrito = await models.carrito.findById(id).populate('evento').populate('usuario')
-		return res.json({ carrito});
+		return res.json({ carrito });
 	} catch (_) {
 		return res.status(409).json({ error: 'Carrito no encontrado' });
 	}
@@ -75,12 +75,6 @@ const update = async (req, res) => {
 		// carrito.evento = evento;
 		// carrito.numero = numero;
 	
-
-		// const author = models.author.findById(authorId)
-
-		// await models.book.findByIdAndUpdate(id, {
-		// 	$set: { title, author: authorId },
-		// });
 
 		await carrito.save();
 

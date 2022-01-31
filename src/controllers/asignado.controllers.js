@@ -4,7 +4,7 @@ const config = require("../config");
 const create = async (req, res) => {
   try {
     console.log({ body: req.body });
-    const { carritoId, unidades, productoId } = req.body;
+    const { carritoId, unidades, productoId, venta} = req.body;
     if (!productoId || !unidades) {
       return res.status(409).json({ error: "Todos los campos son requeridos" });
     }
@@ -27,33 +27,37 @@ const create = async (req, res) => {
     //Fin prueba
 
 
-    const venta = models.venta({
+    const asignado = models.asignado({
       carrito,
       producto,
       unidades,
+      venta,
+  
     });  
   
     // const almacen = models.almacen({
     // unids,
     // });
     producto.unids =+ unidades;
-    await venta.save();
+    await asignado.save();
     // await almacen.save(); 
 
-    return res.status(201).json({ venta });
+    return res.status(201).json({ asignado });
   } catch (_) {
     return res
       .status(409)
-      .json({ error: "Hubo un error al crear la venta (Server)" });
+      .json({ error: "Hubo un error al crear la asignacion (Server)" });
   }
 };
 
+
+
 const all = async (req, res) => {
   try {
-    const ventas = await models.venta.find().populate('producto');
-    return res.json({ ventas });
+    const asignados = await models.asignado.find().populate('producto');
+    return res.json({ asignados });
   } catch (err) {
-    return res.json({ error: "no se pudo crear el listado de ventas" });
+    return res.json({ error: "no se pudo crear el listado de asgnados" });
   }
 };
 

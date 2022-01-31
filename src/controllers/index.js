@@ -2,7 +2,7 @@ const user = require("./user.controllers");
 const event = require("./event.controllers");
 const carrito = require("./carrito.controllers");
 const almacen = require("./almacen.controllers");
-const venta = require("./venta.controllers");
+const asignado = require("./asignado.controllers");
 const consumo = require("./consumo.controllers");
 const category = require("./category.controllers");
 
@@ -11,7 +11,7 @@ user,
 event,
 carrito, 
 almacen,
-venta,
+asignado,
 consumo,
 category,
 };

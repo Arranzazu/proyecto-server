@@ -45,6 +45,43 @@ const create = async (req, res) => {
   }
 };
 
+
+const get = async (req, res) => {
+	try {
+		const { carritoId } = req.params;
+
+		const consumo= await models.consumo.find({carrito: carritoId})
+		return res.json({ consumo });
+	} catch (_) {
+		return res.status(409).json({ error: 'Carrito no encontrado' });
+	}
+};
+
+
+
+const update = async (req, res) => {
+	try {
+  
+		// const { id } = req.params;
+		// const { evento, numero } = req.params;
+		const { venta } = req.body;
+    const { id } = req.params;
+
+		const asignado = await models.asignado.findById(id);
+		asignado.venta = venta;
+		// carrito.evento = evento;
+		// carrito.numero = numero;
+	
+
+		await asignado.save();
+
+		return res.status(201).json({ asignado });
+	} catch (err) {
+		console.log({ err });
+		return res.status(409).json({ error: err.message });
+	}
+};
+
 const all = async (req, res) => {
   try {
     const consumos = await models.consumo.find().populate('producto');
@@ -57,4 +94,6 @@ const all = async (req, res) => {
 module.exports = {
   create,
   all,
+  get,
+  update,
 };

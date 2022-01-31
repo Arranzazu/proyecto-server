@@ -19,7 +19,7 @@ server.use("/user", routes.user);
 server.use("/event", routes.event);
 server.use("/almacen", routes.almacen);
 server.use("/carrito", routes.carrito);
-server.use("/venta", routes.venta);
+server.use("/asignado", routes.asignado);
 server.use("/consumo", routes.consumo);
 server.use("/category", routes.category);
 server.use("/prueba", routes.prueba);

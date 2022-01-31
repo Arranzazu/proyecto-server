@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const ventaSchema = new Schema(
+const asignadoSchema = new Schema(
   {
     carrito: {
       type: Schema.Types.ObjectId,
@@ -11,9 +11,20 @@ const ventaSchema = new Schema(
       ref: "Almacen",
     },
 
+    // evento: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "Carrito",
+    // },
+
     unidades: {
       type: Number,
       required: true,
+    },
+
+    venta: {
+      type: Number,
+      required: true,
+      default: 0,
     },
 
   },
@@ -23,4 +34,4 @@ const ventaSchema = new Schema(
     timestamps: true,
   }
 );
-module.exports = model("Venta", ventaSchema);
+module.exports = model("Asignado", asignadoSchema);
