@@ -12,7 +12,7 @@ const almacenSchema = new Schema(
       },
     unids: {
       type: Number,
-      required: true,
+      required: false,
     },
     active: {
       type: Boolean,
