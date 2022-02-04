@@ -7,7 +7,7 @@ const routes = require("./routes");
 const server = express();
 
 // Settings.
-server.set("PORT", process.env.PORT || 4500);
+server.set("PORT", process.env.PORT || 4500); //para que funcione en Heroku y a la vez en local
 // server.set("PORT", 4500);
 
 // Middlewares.
