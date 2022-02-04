@@ -25,6 +25,15 @@ server.use("/consumo", routes.consumo);
 server.use("/category", routes.category);
 server.use("/prueba", routes.prueba);
 
+
+//ruta saludo Heroku
+server.get("/",  (req, res) => {
+    return res.json({msg: 'Hola' });
+});
+
+
+
 // Static folder.
+// server.use(express.static(path.join(_dirname, 'statics')));
 
 module.exports = server;
