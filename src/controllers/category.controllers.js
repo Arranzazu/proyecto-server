@@ -22,7 +22,7 @@ const create = async (req, res) => {
 };
 const all = async (req, res) => {
     try {
-      const categorys = await models.category.find().populate('categoryname').sort({ categoryname: 'asc' });;
+      const categorys = await models.category.find().populate('categoryname').sort({ categoryname: "asc" });
   
       return res.json({ categorys });
     } catch (err) {
@@ -36,7 +36,7 @@ const all = async (req, res) => {
           const category = await models.category.findById(id).populate('categoryname')
           return res.json({ category });
       } catch (_) {
-          return res.status(409).json({ error: 'Category no encontrado' });
+          return res.status(409).json({ error: 'Categoría no encontrada' });
       }
   };
   

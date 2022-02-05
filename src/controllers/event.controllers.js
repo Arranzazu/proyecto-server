@@ -47,6 +47,45 @@ const get = async (req, res) => {
   }
 };
 
+
+const ActiveYes = async (req, res) => {
+	console.log('cambio de no activo/activo')
+    try {
+      const { id } = req.params;
+
+      const event = await models.event.findById({ _id: id });
+      if (!event) {
+        throw "El evento no existe";
+      }
+
+      event.activo = true;
+      await event.save();
+      return res.status(200).json({ event });
+    } catch (e) {
+      return res.status(400).json({ e });
+    }
+
+  };
+
+  const ActiveNo = async (req, res) => {
+	console.log('cambio de activo/no activo')
+    try {
+      const { id } = req.params;
+
+      const event = await models.event.findById({ _id: id });
+      if (!event) {
+        throw "The user does not exist";
+      }
+
+      event.activo = false;
+      await event.save();
+      return res.status(200).json({ event });
+    } catch (e) {
+      return res.status(400).json( { e });
+    }
+
+  };
+
 const suprime = async (req, res) => {
   try {
     const { id } = req.params;
@@ -68,4 +107,6 @@ module.exports = {
   all,
   get,
   suprime,
+  ActiveNo,
+  ActiveYes,
 };
